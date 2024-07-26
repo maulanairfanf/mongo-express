@@ -1,10 +1,9 @@
 const express = require('express')
 const path = require('path')
+const connectDB = require('./app/db/index')
 
 const app = express()
 const v1 = '/api/v1'
-
-const connectDB = require('./connectMongo')
 
 connectDB()
 
