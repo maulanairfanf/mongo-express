@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
-
+const { StatusCodes } = require('http-status-codes')
+const { getProduct } = require('./app/services/mongoose/product')
 const app = express()
 const v1 = '/api/v1'
 
@@ -16,6 +17,13 @@ app.get('/', (req, res) => {
 	})
 })
 
-app.use(`${v1}`, productRouter)
+app.get('/product', async (req, res) => {
+	const result = await getProduct(req)
+	res.status(StatusCodes.OK).json(result)
+})
+
+// router.get('/product', index)
+
+// app.use(`${v1}`, productRouter)
 
 module.exports = app
