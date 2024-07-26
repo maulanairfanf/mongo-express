@@ -8,8 +8,8 @@ const v1 = '/api/v1'
 const productRouter = require('./app/api/v1/product/router')
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.urlencoded({ extended: false }))
+// app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
 	res.status(200).json({
