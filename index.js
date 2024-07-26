@@ -4,8 +4,6 @@ const path = require('path')
 const app = express()
 const v1 = '/api/v1'
 
-const db = require('./app/db')
-
 const connectDB = require('./connectMongo')
 
 connectDB()
@@ -24,8 +22,4 @@ app.get('/', (req, res) => {
 
 app.use(`${v1}`, productRouter)
 
-const PORT = process.env.PORT
-
-app.listen(PORT, () => {
-	console.log('Server is running on port ' + PORT)
-})
+module.exports = app
