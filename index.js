@@ -1,15 +1,19 @@
 const express = require('express')
 const path = require('path')
-const cookieParser = require('cookie-parser')
 
 const app = express()
 const v1 = '/api/v1'
+
+const db = require('./app/db')
+
+const connectDB = require('./connectMongo')
+
+connectDB()
 
 const productRouter = require('./app/api/v1/product/router')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
@@ -20,4 +24,8 @@ app.get('/', (req, res) => {
 
 app.use(`${v1}`, productRouter)
 
-module.exports = app
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+	console.log('Server is running on port ' + PORT)
+})
